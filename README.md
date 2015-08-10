@@ -1,1 +1,4 @@
 groovy自动化部署项目
+
+
+def map= ["PC":"gradle clean war","PP": "/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web", "PF": "/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web/target/libs/tz-eterm-interface-web.war","RF": "/data/tomcat-eterm/webapps/tz-eterm-interface-web.war", "RH": "192.168.160.183", "RPT": 22, "RU": "root", "RPD": "root", "RC": "cd /data/tomcat-eterm/bin;./shutdown.sh;ps x|grep /data/tomcat-eterm/| grep -v grep|awk \'{print \$1}\'|xargs kill -9;cd /data/tomcat-eterm/logs/;rm -rf catalina.out;cd /data/tomcat-eterm/bin;./startup.sh", "RL": "/data/tomcat-eterm/logs/catalina.out"]

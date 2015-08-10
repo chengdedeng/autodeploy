@@ -10,17 +10,17 @@ repositories {
     mavenCentral()
 }
 
-//fatJar {
-//    classifier 'fat'
-//
-//    // We need to add the main class to the manifest, otherwise the JAR won't start.
-//    manifest {
-//        attributes 'Main-Class': 'info.yangguo.demo.script.Test'
-//    }
-//
-//    // We have to exclude signature files from the fat JAR, otherwise we'll get invalid signature file digest errors.
-//    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
-//}
+fatJar {
+    classifier 'fat'
+
+    // We need to add the main class to the manifest, otherwise the JAR won't start.
+    manifest {
+        attributes 'Main-Class': 'info.yangguo.demo.script.Deploy'
+    }
+
+    // We have to exclude signature files from the fat JAR, otherwise we'll get invalid signature file digest errors.
+    exclude 'META-INF/*.DSA', 'META-INF/*.RSA', 'META-INF/*.SF'
+}
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'

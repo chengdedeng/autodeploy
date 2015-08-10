@@ -29,7 +29,7 @@ class Deploy {
                     for (Map.Entry entry : arguments.entrySet()) {
                         println(entry.key + ":" + entry.value)
                     }
-                    println "例如:def map= [\"PC\":\"gradle clean war\",\"PP\": \"/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web\", \"PF\": \"/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web/target/libs/tz-eterm-interface-web.war\",\"RF\": \"/home/yangguo/tomcat-7.0.54/webapps/tz-eterm-interface-web.war\", \"RH\": \"10.3.41.113\", \"RPT\": 22, \"RU\": \"yangguo\", \"RPD\": \"Abc12345\", \"RC\": \"cd /home/yangguo/tomcat-7.0.54/bin;./startup.sh\", \"RL\": \"/data/log/tops/tz-eterm-interface-web(10.3.41.113:8080)-debug-current.log\"]";
+                    println "例如:def map= [\"PC\":\"gradle clean war\",\"PP\": \"/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web\", \"PF\": \"/Users/yangguo/work/code/flight-price/tops-eterm-interface/tz-eterm-interface-web/target/libs/tz-eterm-interface-web.war\",\"RF\": \"/home/yangguo/tomcat-7.0.54/webapps/tz-eterm-interface-web.war\", \"RH\": \"*.*.*.*\", \"RPT\": 22, \"RU\": \"****\", \"RPD\": \"****\", \"RC\": \"cd /data/tomcat-eterm/bin;./shutdown.sh;ps x|grep /data/tomcat-eterm/| grep -v grep|awk \\'{print \\\$1}\\'|xargs kill -9;cd /data/tomcat-eterm/logs/;rm -rf catalina.out;cd /data/tomcat-eterm/bin;./startup.sh\", \"RL\": \"/data/log/tops/tz-eterm-interface-web(10.3.41.113:8080)-debug-current.log\"]";
                 } else {
                     def groovyShell = new GroovyShell()
                     def commands = groovyShell.evaluate(parameter)
@@ -89,8 +89,11 @@ class Deploy {
     }
 
     def static logging = { Map<String, String> commands ->
+        println "开始查看日志"
+        sleep(1000 * 5)
         def rl = commands.get("RL")
         Operate.getStream.call(ssh2Session.session, rl)
         ssh2Session.closeSession();
+        println "结束日志查看"
     }
 }
